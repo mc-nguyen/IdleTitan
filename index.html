@@ -2,21 +2,24 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="interface.css" />
+    <title>Idle Titan</title>
   </head>
   <body>
     <script type="text/javascript" src="main.js"></script>
     <div class="row">
-      <div class="battle-control">
-        <button onclick="nextBattle()">Next Battle</button>
-        <button onclick="runAway()">Run Away</button>
-      </div>
-      <div class="column">
-      </div>
-      <div class="column">
-
-      </div>
       <div class="canvas-battle">
         <canvas id="battle" width="300" height="300" style=""/>
+      </div>
+      <div class="battle-control" align="center">
+        <button onclick="attackMonster()">Hit</button>
+        <button onclick="runAway()">Run Away</button>
+      </div>
+      <div class="character" align="center">
+        <b>Gold: <span id="gold"></span></b><br>
+        <b>Attack Damage: <span id="attack-damage"></span></b><br>
+        <b>Kills: <span id="defeated-monsters"></span></b><br>
+        <br><br>
+        <img src="images/mainchar.png" height="150px">
       </div>
     </div>
   </body>

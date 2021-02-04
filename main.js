@@ -12,13 +12,8 @@ var image = new Image();
 image.src = 'images/img.png';
 
 window.onload = function() {
-    var canvas = document.getElementById("battle").getContext("2d");
-    canvas.drawImage(image, monster["monster-pic"]["col"] * col, monster["monster-pic"]["row"] * row, col, row, 10, 10, col, row);
-}
-
-function runAway() {
-    var canvas = document.getElementById("battle").getContext("2d");
-    canvas.clearRect(0, 0, 300, 300);
+    updateText();
+    updateTitan();
 }
 
 //Global Variables
@@ -26,20 +21,26 @@ var defaultMonsterHP = 5;
 var monsterHP = 5;
 var defeatedMonsterCount = 0;
 var playerATK = 1;
+var characterGold = 0;
 
 function attackMonster()
 {
      if(monsterHP > 0)
      {
+         console.log("Monster HP: " + monsterHP)
           monsterHP -= playerATK;
-          if(monsterHP == 0)
+          if(monsterHP <= 0)
           {
+              characterGold += Math.ceil(defaultMonsterHP/2);
+              console.log("Gold: " + characterGold);
                defeatedMonsterCount++;
-               defaultMonsterHP += 3;
+               defaultMonsterHP = Math.ceil(defaultMonsterHP * 1.2)
                monsterHP = defaultMonsterHP;
                nextBattle();
+               updateTitan();
           }
      }
+     updateText();
 }
 
 function nextBattle() {
@@ -54,7 +55,32 @@ function nextBattle() {
         monster["monster-pic"]["row"] = 0;
     }
 
-    var canvas = document.getElementById("battle").getContext("2d");
-    canvas.clearRect(0, 0, 300, 300);
-    canvas.drawImage(image, monster["monster-pic"]["col"] * col, monster["monster-pic"]["row"] * row, col, row, 10, 10, col, row);
+    updateText();
+}
+
+function updateText() {
+    var canvas = document.getElementById("battle")
+    var context = canvas.getContext("2d");
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(image,
+        monster["monster-pic"]["col"] * col,
+        monster["monster-pic"]["row"] * row,
+        col,
+        row,
+        (canvas.width - col) / 2,
+        canvas.height - row + 10,
+        col,
+        row
+    );
+    context.font = "30px Comic Sans MS";
+    context.fillStyle = "red";
+    context.textAlign = "center";
+    context.fillText("Level: " + monster["level"], canvas.width/2, 35);
+    context.fillText("HP: " + monsterHP, canvas.width/2, 70);
+}
+
+function updateTitan() {
+    document.getElementById("gold").innerHTML = characterGold;
+    document.getElementById("attack-damage").innerHTML = playerATK;
+    document.getElementById("defeated-monsters").innerHTML = defeatedMonsterCount;
 }

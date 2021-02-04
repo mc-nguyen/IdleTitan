@@ -18,7 +18,7 @@ button:active {
 }
 
 .battle-control {
-    z-index: -1;
+    margin: 15px;
 }
 
 .column {
@@ -29,7 +29,7 @@ button:active {
 canvas {
     padding-left: 0;
     padding-right: 0;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     display: block;
+    border: 2px solid blue;
 }
