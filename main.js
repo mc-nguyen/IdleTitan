@@ -21,6 +21,27 @@ function runAway() {
     canvas.clearRect(0, 0, 300, 300);
 }
 
+//Global Variables
+var defaultMonsterHP = 5;
+var monsterHP = 5;
+var defeatedMonsterCount = 0;
+var playerATK = 1;
+
+function attackMonster()
+{
+     if(monsterHP > 0)
+     {
+          monsterHP -= playerATK;
+          if(monsterHP == 0)
+          {
+               defeatedMonsterCount++;
+               defaultMonsterHP += 3;
+               monsterHP = defaultMonsterHP;
+               nextBattle();
+          }
+     }
+}
+
 function nextBattle() {
     monster["level"]++;
     monster["monster-pic"]["col"]++;
