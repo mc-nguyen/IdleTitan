@@ -1,4 +1,4 @@
-var monster = {
+const monster = {
     "level": 1,
     "monster-pic": {
         "col": 0,
@@ -8,34 +8,26 @@ var monster = {
     'HP': 5,
 };
 
-var row = 190; //height = 190px
-var col = 134; //width = 134px
+const row = 190; //height = 190px
+const col = 134; //width = 134px
 
-var player = {
+const player = {
     'gold': 0,
     'level': 1,
     'damage': 1,
     'kills': 0,
-}
+};
 
-var image = new Image();
+const image = new Image();
 image.src = 'images/img.png';
-var character = new Image();
+const character = new Image();
 character.src = 'images/mainchar.png';
 character.height = 150;
 character.width = 150;
 
 window.onload = function() {
     updateText();
-    updateTitan();
 }
-
-//Global Variables
-var defaultMonsterHP = 5;
-var monsterHP = 5;
-var defeatedMonsterCount = 0;
-var playerATK = 1;
-var characterGold = 0;
 
 function attackMonster()
 {
@@ -101,10 +93,4 @@ function updateText() {
     context.fillText("Gold: " + player["gold"], 20, 35);
     context.fillText("Attack Damage: " + player["damage"], 20, 70);
     context.fillText("Kills: " + player['kills'], 20, 105);
-}
-
-function updateTitan() {
-    document.getElementById("gold").innerHTML = characterGold;
-    document.getElementById("attack-damage").innerHTML = playerATK;
-    document.getElementById("defeated-monsters").innerHTML = defeatedMonsterCount;
 }
