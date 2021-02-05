@@ -10,6 +10,10 @@ var col = 134;
 
 var image = new Image();
 image.src = 'images/img.png';
+var character = new Image();
+character.src = 'images/mainchar.png';
+character.height = 150;
+character.width = 150;
 
 window.onload = function() {
     updateText();
@@ -67,7 +71,7 @@ function updateText() {
         monster["monster-pic"]["row"] * row,
         col,
         row,
-        (canvas.width - col) / 2,
+        canvas.width * 3/4 - col / 2,
         canvas.height - row + 10,
         col,
         row
@@ -75,8 +79,21 @@ function updateText() {
     context.font = "30px Comic Sans MS";
     context.fillStyle = "red";
     context.textAlign = "center";
-    context.fillText("Level: " + monster["level"], canvas.width/2, 35);
-    context.fillText("HP: " + monsterHP, canvas.width/2, 70);
+    context.fillText("Level: " + monster["level"], canvas.width*3/4, 35);
+    context.fillText("HP: " + monsterHP, canvas.width*3/4, 70);
+
+    context.drawImage(character,
+        canvas.width / 4 - character.width / 2,
+        canvas.height - character.height - 30,
+        character.width,
+        character.height,
+    );
+    context.font = "30px Comic Sans MS";
+    context.fillStyle = "blue";
+    context.textAlign = "left";
+    context.fillText("Gold: " + characterGold, 20, 35);
+    context.fillText("Attack Damage: " + playerATK, 20, 70);
+    context.fillText("Kills: " + defaultMonsterHP, 20, 105);
 }
 
 function updateTitan() {
