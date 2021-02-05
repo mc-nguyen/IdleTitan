@@ -25,7 +25,7 @@ const player = {
         'rate': .00,
     },
     'passive': {
-        'damage': 1,
+        'damage': 0,
         'cooldown': 5,
     },
 };
@@ -61,23 +61,7 @@ function attackMonster()
          if(monster['HP'] <= 0) {
               player['gold'] += monster['level'] * monster['goldDrop'];
               player['kills']++;
-              monster['defaultHP'] = Math.ceil(monster['defaultHP'] * 1.2)
-              monster['HP'] = monster['defaultHP'];
-
-              monster["level"]++;
-              monster["monster-pic"]["col"]++;
-
-              if (monster["monster-pic"]["col"] === 4) {
-                  monster["monster-pic"]["col"] = 0;
-                  monster["monster-pic"]["row"]++;
-              }
-              if (monster["monster-pic"]["row"] === 3) {
-                  monster["monster-pic"]["row"] = 0;
-              }
-
-              monster["damage"]++;
-
-              updateText();
+              monsterUpgrade();
          }
      }
 
@@ -206,6 +190,24 @@ function updateText() {
     document.getElementById("goldDrop").innerHTML = upgradeCost["goldDrop"];
 }
 
+//monster update
+function monsterUpgrade() {
+    monster['defaultHP'] = Math.ceil(monster['defaultHP'] * 1.2)
+    monster['HP'] = monster['defaultHP'];
+    monster["damage"]++;
+
+    monster["level"]++;
+    monster["monster-pic"]["col"]++;
+
+    if (monster["monster-pic"]["col"] === 4) {
+        monster["monster-pic"]["col"] = 0;
+        monster["monster-pic"]["row"]++;
+    }
+    if (monster["monster-pic"]["row"] === 3) {
+        monster["monster-pic"]["row"] = 0;
+    }
+}
+
 window.setInterval(function passiveAttack() {
     if(monster['HP'] > 0)
     {
@@ -213,20 +215,7 @@ window.setInterval(function passiveAttack() {
         if(monster['HP'] <= 0) {
             player['gold'] += monster['level'] * monster['goldDrop'];
             player['kills']++;
-            monster['defaultHP'] = Math.ceil(monster['defaultHP'] * 1.2)
-            monster['HP'] = monster['defaultHP'];
-
-            monster["level"]++;
-            monster["monster-pic"]["col"]++;
-
-            if (monster["monster-pic"]["col"] === 4) {
-                monster["monster-pic"]["col"] = 0;
-                monster["monster-pic"]["row"]++;
-            }
-            if (monster["monster-pic"]["row"] === 3) {
-                monster["monster-pic"]["row"] = 0;
-            }
-
+            monsterUpgrade();
             updateText();
         }
     }
