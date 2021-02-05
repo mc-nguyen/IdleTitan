@@ -94,3 +94,62 @@ function updateText() {
     context.fillText("Attack Damage: " + player["damage"], 20, 70);
     context.fillText("Kills: " + player['kills'], 20, 105);
 }
+
+//Global Variables
+var defaultMonsterHP = 5;
+var monsterHP = 5;
+var defeatedMonsterCount = 0;
+var playerATK = 1;
+var characterGold = 0;
+var atkUpgradeCount = 0;
+var atkUpgradeCost = 20;
+var poisonUpgradeCount = 0;
+var poisonUpgradeCost = 100;
+var poisonUpgradeMultiplier = 1;
+var escapeUsesCount = 3;
+
+// Add to attackMonster() function.
+         /*if(poisonUpgradeCount > 0)
+         {
+             var randomProc = Math.floor((Math.random() * 30) + 1);
+             var randomMatch = Math.floor((Math.random() * 30) + 1);
+             
+             if(randomProc == randomMatch)
+             {
+                 monsterHP -= Math.ceil(playerATK * poisonUpgradeMultiplier);
+             }    
+         }
+         else
+         {    
+              monsterHP -= playerATK;
+         }    
+
+// Upgrade ATK System - increase damage dealt per attack / max 15.
+function upgradeATK()
+{
+    if(atkUpgradeCount <= 14)
+    {
+        if(characterGold >= atkUpgradeCost)
+        {
+            characterGold -= atkUpgradeCost;
+            playerATK++;
+            atkUpgradeCost = Math.ceil(atkUpgradeCost * 1.5);
+            atkUpgradeCount++;
+        }    
+    }
+}
+
+// Upgrade Poison System - deal random extra damage per attack / max 5.
+function managePoisonUpgrade()
+{
+     if(poisonUpgradeCount <= 4)
+     {
+          if(characterGold >= poisonUpgradeCost)
+          {
+               characterGold -= poisonUpgradeCost;
+               poisonUpgradeCost = Math.ceil(poisonUpgradeCost * 2.75);
+               poisonUpgradeMultiplier = Math.ceil(poisonUpgradeMultiplier * 3.2)
+               poisonUpgradeCount++;
+          }    
+     }    
+}*/
