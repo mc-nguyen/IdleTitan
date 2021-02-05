@@ -1,4 +1,32 @@
-button {
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+:root {
+    --backgroundColor: rgba(246, 241, 209);
+    --colorShadeA: rgb(106, 163, 137);
+    --colorShadeB: rgb(121, 186, 156);
+    --colorShadeC: rgb(150, 232, 195);
+    --colorShadeD: rgb(187, 232, 211);
+    --colorShadeE: rgb(205, 255, 232);
+}
+
+h1 {
+    font-family: 'Indie Flower', cursive;
+    font-size: 75px;
+    font-weight: bolder;
+    padding: 0;
+    margin: 0;
+    animation: colorChange 2s infinite;
+}
+
+@keyframes colorChange {
+    0% {color: red;}
+    25% {color: yellow;}
+    50% {color: green;}
+    75% {color: blue;}
+    100% {color: red;}
+}
+
+.battle-control button {
     background-color: #555555;
     border: black;
     border-radius: 50%;
@@ -10,12 +38,12 @@ button {
     font-size: 16px;    
 }
 
-button:hover {
+.battle-control button:hover {
     background-color: lightslategrey;
     border-radius: 50%;
 }
 
-button:active {
+.battle-control button:active {
     background-color: #555555;
     border-radius: 50%;
 }
@@ -27,7 +55,70 @@ button:active {
 canvas {
     padding-left: 0;
     padding-right: 0;
-    margin: 50px auto;
+    margin: auto auto 50px;
     display: block;
     border: 2px solid blue;
+}
+
+.upgrade {
+    margin: 50px auto;
+}
+
+.upgrade button {
+    width: 500px;
+    display: block;
+    margin-top: 10px;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    font-size: 1.5rem;
+    color:var(--colorShadeA);
+    font-weight: 700;
+    font-family: inherit;
+}
+
+.upgrade button {
+    border: 2px solid var(--colorShadeA);
+    border-radius: 1em;
+    background: var(--colorShadeE);
+    transform-style: preserve-3d;
+    transition: all 175ms cubic-bezier(0, 0, 1, 1);
+}
+.upgrade button::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--colorShadeC);
+    border-radius: inherit;
+    box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.75em 0 0 var(--colorShadeA);
+    transform: translate3d(0, 0.75em, -1em);
+    transition: all 175ms cubic-bezier(0, 0, 1, 1);
+}
+
+
+.upgrade button:hover {
+    background: var(--colorShadeD);
+    transform: translate(0, 0.375em);
+}
+
+.upgrade button:hover::before {
+    transform: translate3d(0, 0.75em, -1em);
+}
+
+.upgrade button:active {
+    transform: translate(0em, 0.75em);
+}
+
+.upgrade button:active::before {
+    transform: translate3d(0, 0, -1em);
+
+    box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.25em 0 0 var(--colorShadeB);
+
 }

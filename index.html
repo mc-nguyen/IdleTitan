@@ -9,6 +9,7 @@
     <script type="text/javascript" src="main.js"></script>
 
     <div class="row">
+      <h1 align="center">IDLE TITAN</h1>
 
       <div class="canvas-battle">
         <canvas id="battle" width="600" height="300" style=""/>
@@ -17,6 +18,16 @@
       <div class="battle-control" align="center">
         <button onclick="attackMonster()"><img src="images/FightButtonImage.png" height="100px"></button>
         <button onclick="runAway()"><img src="images/RunAwayButtonImage.png" height="100px"></button>
+      </div>
+
+      <div class="upgrade" align="center">
+        <h2>--- Upgrade ---</h2>
+        <button onclick="increaseDamage()"><strong>(+1)</strong> Damage (<em id="damage"></em> gold)</button>
+        <button onclick="criticalRateIncrease()"><strong>(+.1%)</strong> Critical Rate (<em id="criticalRate"></em> gold)</button>
+        <button onclick="criticalDamageIncrease()"><strong>(+.1%)</strong> Critical Damage Increase (<em id="criticalDamage"></em> gold)</button>
+        <button onclick="passiveSkillsDamage()"><strong>(+1)</strong> Passive Skills' Damage (<em id="passiveDamage"></em> gold)</button>
+        <button onclick="passiveSkillsCooldown()"><strong>(-0.1s)</strong> Passive Skills' Cooldown (<em id="passiveCooldown"></em> gold)</button>
+        <button onclick="increaseGoldDrop()"><strong>(+1)</strong> Increase Gold Drop Multiplier (<em id="goldDrop"></em> gold)</button>
       </div>
 
     </div>
