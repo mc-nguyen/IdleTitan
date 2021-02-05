@@ -1,12 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 :root {
-    --backgroundColor: rgba(246, 241, 209);
+    --backgroundColor: rgb(246, 241, 209);
     --colorShadeA: rgb(106, 163, 137);
     --colorShadeB: rgb(121, 186, 156);
     --colorShadeC: rgb(150, 232, 195);
     --colorShadeD: rgb(187, 232, 211);
     --colorShadeE: rgb(205, 255, 232);
+}
+
+body {
+    background-image: url('images/grass-background.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 h1 {
@@ -57,11 +64,26 @@ canvas {
     padding-right: 0;
     margin: auto auto 50px;
     display: block;
-    border: 2px solid blue;
+    border: 5px solid;
+    animation: borderChange 2s infinite;
+}
+
+@keyframes borderChange {
+    0% {border-color: var(--colorShadeA);}
+    20% {border-color: var(--colorShadeB);}
+    40% {border-color: var(--colorShadeC);}
+    60% {border-color: var(--colorShadeD);}
+    80% {border-color: var(--colorShadeE);}
+    100% {border-color: var(--colorShadeA);}
 }
 
 .upgrade {
     margin: 50px auto;
+    width: fit-content;
+    background-color: aquamarine;
+    padding: 0 10px 50px;
+    height: auto;
+    border: 5px solid;
 }
 
 .upgrade button {

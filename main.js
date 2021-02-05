@@ -44,6 +44,10 @@ const character = new Image();
 character.src = 'images/mainchar.png';
 character.height = 150;
 character.width = 150;
+const battleImage = new Image();
+battleImage.src = 'images/battle.png';
+battleImage.height = 300;
+battleImage.width = 600;
 
 window.onload = function() {
     updateText();
@@ -131,6 +135,12 @@ function updateText() {
     let canvas = document.getElementById("battle");
     let context = canvas.getContext("2d");
     context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(battleImage,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
 
     //monster
     context.drawImage(image,
@@ -145,13 +155,13 @@ function updateText() {
     );
     context.font = "30px Comic Sans MS";
     context.fillStyle = "red";
-    context.textAlign = "center";
-    context.fillText("Level: " + monster["level"], canvas.width*3/4, 35);
+    context.textAlign = "right";
+    context.fillText("Level " + monster["level"], canvas.width - 10, 35);
     context.fillStyle = "#FF0000";
 
     //HP monster
-    context.font = "12px Comic Sans MS";
-    context.fillStyle = "red";
+    context.font = "bolder 12px Comic Sans MS";
+    context.fillStyle = "pink";
     context.textAlign = "left";
     context.fillText("HP", canvas.width/2 + 10, canvas.height - 10);
     let lostHP = (canvas.width/2 - 40) * (1 - monster["HP"] / monster["defaultHP"]);
@@ -168,13 +178,13 @@ function updateText() {
     context.font = "30px Comic Sans MS";
     context.fillStyle = "blue";
     context.textAlign = "left";
-    context.fillText("Gold: " + player["gold"], 20, 35);
-    context.fillText("Attack Damage: " + player["damage"], 20, 70);
-    context.fillText("Kills: " + player['kills'], 20, 105);
+    context.fillText("Gold: " + player["gold"], 10, 35);
+    context.fillText("Attack Damage: " + player["damage"], 10, 70);
+    context.fillText("Kills: " + player['kills'], 10, 105);
 
     //HP character
-    context.font = "12px Comic Sans MS";
-    context.fillStyle = "blue";
+    context.font = "bolder 12px Comic Sans MS";
+    context.fillStyle = "yellow";
     context.textAlign = "left";
     context.fillText("HP", 10, canvas.height - 10);
     lostHP = (canvas.width/2 - 40) * (1 - player["HP"] / player["defaultHP"]);
