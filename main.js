@@ -6,7 +6,9 @@ const monster = {
     },
     'defaultHP': 5,
     'HP': 5,
-    'goldDrop': 1
+    'goldDrop': 1,
+    'damage': 0,
+    'speed': 2,
 };
 
 const row = 190; //height = 190px
@@ -14,6 +16,8 @@ const col = 134; //width = 134px
 
 const player = {
     'gold': 0,
+    'defaultHP': 15,
+    'HP': 15,
     'damage': 1,
     'kills': 0,
     'critical': {
@@ -21,8 +25,8 @@ const player = {
         'rate': .00,
     },
     'passive': {
-        'damage': 0,
-        'cooldown': 10,
+        'damage': 1,
+        'cooldown': 5,
     },
 };
 const upgradeCost = {
@@ -71,6 +75,8 @@ function attackMonster()
                   monster["monster-pic"]["row"] = 0;
               }
 
+              monster["damage"]++;
+
               updateText();
          }
      }
@@ -112,7 +118,7 @@ function criticalDamageIncrease() {
 function passiveSkillsDamage() {
     if(player["gold"] >= upgradeCost["passiveDamage"]) {
         player["gold"] -= upgradeCost["passiveDamage"];
-        player["passiveDamage"]++;
+        player["passive"]["damage"]++;
         upgradeCost["passiveDamage"] = Math.ceil(upgradeCost["passiveDamage"] * 1.5);
     }
     updateText();
@@ -157,7 +163,16 @@ function updateText() {
     context.fillStyle = "red";
     context.textAlign = "center";
     context.fillText("Level: " + monster["level"], canvas.width*3/4, 35);
-    context.fillText("HP: " + monster['HP'] + "/" + monster['defaultHP'], canvas.width*3/4, 70);
+    context.fillStyle = "#FF0000";
+
+    //HP monster
+    context.font = "12px Comic Sans MS";
+    context.fillStyle = "red";
+    context.textAlign = "left";
+    context.fillText("HP", canvas.width/2 + 10, canvas.height - 10);
+    let lostHP = (canvas.width/2 - 40) * (1 - monster["HP"] / monster["defaultHP"]);
+    context.fillRect(canvas.width/2 + 30 + lostHP,canvas.height - 25,canvas.width/2 - 40 - lostHP,20);
+    context.strokeRect(canvas.width/2 + 30,canvas.height - 25,canvas.width/2 - 40,20);
 
     //character
     context.drawImage(character,
@@ -173,6 +188,15 @@ function updateText() {
     context.fillText("Attack Damage: " + player["damage"], 20, 70);
     context.fillText("Kills: " + player['kills'], 20, 105);
 
+    //HP character
+    context.font = "12px Comic Sans MS";
+    context.fillStyle = "blue";
+    context.textAlign = "left";
+    context.fillText("HP", 10, canvas.height - 10);
+    lostHP = (canvas.width/2 - 40) * (1 - player["HP"] / player["defaultHP"]);
+    context.fillRect(30 + lostHP,canvas.height - 25,canvas.width/2 - 40 - lostHP,20);
+    context.strokeRect(30,canvas.height - 25,canvas.width/2 - 40,20);
+
     //upgrade
     document.getElementById("damage").innerHTML = upgradeCost["damage"];
     document.getElementById("criticalRate").innerHTML = upgradeCost["criticalRate"];
@@ -182,7 +206,7 @@ function updateText() {
     document.getElementById("goldDrop").innerHTML = upgradeCost["goldDrop"];
 }
 
-window.setInterval(function() {
+window.setInterval(function passiveAttack() {
     if(monster['HP'] > 0)
     {
         monster['HP'] -= player['passive']["damage"];
@@ -208,4 +232,27 @@ window.setInterval(function() {
     }
 
     updateText();
-}, player["passive"]["cooldown"] * 1000)
+}, player["passive"]["cooldown"] * 1000);
+
+window.setInterval(function monsterAttack() {
+    if (player['HP'] > 0) {
+        player["HP"] -= monster["damage"];
+        if (player["HP"] <= 0) {
+            monster['level']--;
+            monster['defaultHP'] = Math.ceil(monster['defaultHP'] / 1.2);
+            monster['HP'] = monster['defaultHP'];
+            monster["damage"]--;
+            player['HP'] = player['defaultHP'];
+
+            monster["monster-pic"]["col"]--;
+            if (monster['monster-pic']['col'] < 0) {
+                monster["monster-pic"]["col"] = 3;
+                monster["monster-pic"]["row"]--;
+            }
+            if (monster["monster-pic"]["row"] < 0) {
+                monster["monster-pic"]["row"] = 2;
+            }
+        }
+    }
+    updateText();
+}, monster["speed"] * (1 + Math.random()) * 1000);
