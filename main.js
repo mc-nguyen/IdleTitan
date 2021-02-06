@@ -6,6 +6,7 @@ const monster = {
     },
     'defaultHP': 5,
     'HP': 5,
+    'defense': 1,
     'goldDrop': 1,
     'damage': 0,
     'speed': 2,
@@ -31,6 +32,8 @@ const player = {
 };
 const upgradeCost = {
     'damage': 50,
+    'HP': 50,
+    'defense': 50,
     'criticalRate': 50,
     'criticalDamage': 50,
     'passiveDamage': 50,
@@ -61,8 +64,9 @@ function attackMonster()
          if (criticalRate > player["critical"]["rate"]) criticalRate = 0;
          let criticalDamage = Math.random();
          if (criticalDamage > player["critical"]["damage"]) criticalDamage = 0;
-         monster['HP'] -= player['damage'] * (1 + criticalDamage) * (1 + criticalRate);
-         if(monster['HP'] <= 0) {
+         let damage = player['damage'] * (1 + criticalDamage) * (1 + criticalRate);
+         monster['HP'] -= damage;
+         if (monster['HP'] <= 0) {
               player['gold'] += monster['level'] * monster['goldDrop'];
               player['kills']++;
               monsterUpgrade();
@@ -79,6 +83,25 @@ function increaseDamage() {
         player["gold"] -= upgradeCost["damage"];
         player["damage"]++;
         upgradeCost["damage"] = Math.ceil(upgradeCost["damage"] * 1.5);
+        updateText();
+    }
+}
+function increaseHP() {
+    if(player["gold"] >= upgradeCost["HP"])
+    {
+        player["gold"] -= upgradeCost["HP"];
+        player["defaultHP"] += 10;
+        player["HP"] = player["defaultHP"];
+        upgradeCost["HP"] = Math.ceil(upgradeCost["HP"] * 1.5);
+    }
+    updateText();
+}
+function increaseDefense() {
+    if(player["gold"] >= upgradeCost["defense"])
+    {
+        player["gold"] -= upgradeCost["defense"];
+        player["defense"]++;
+        upgradeCost["defense"] = Math.ceil(upgradeCost["defense"] * 1.5);
     }
     updateText();
 }
@@ -157,7 +180,6 @@ function updateText() {
     context.fillStyle = "red";
     context.textAlign = "right";
     context.fillText("Level " + monster["level"], canvas.width - 10, 35);
-    context.fillStyle = "#FF0000";
 
     //HP monster
     context.font = "bolder 12px Comic Sans MS";
@@ -179,8 +201,7 @@ function updateText() {
     context.fillStyle = "blue";
     context.textAlign = "left";
     context.fillText("Gold: " + player["gold"], 10, 35);
-    context.fillText("Attack Damage: " + player["damage"], 10, 70);
-    context.fillText("Kills: " + player['kills'], 10, 105);
+    context.fillText("Kills: " + player['kills'], 10, 70);
 
     //HP character
     context.font = "bolder 12px Comic Sans MS";
@@ -193,6 +214,8 @@ function updateText() {
 
     //upgrade
     document.getElementById("damage").innerHTML = upgradeCost["damage"];
+    document.getElementById("hp").innerHTML = upgradeCost["HP"];
+    document.getElementById("defense").innerHTML = upgradeCost["defense"];
     document.getElementById("criticalRate").innerHTML = upgradeCost["criticalRate"];
     document.getElementById("criticalDamage").innerHTML = upgradeCost["criticalDamage"];
     document.getElementById("passiveDamage").innerHTML = upgradeCost["passiveDamage"];

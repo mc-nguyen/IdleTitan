@@ -66,6 +66,7 @@ canvas {
     display: block;
     border: 5px solid;
     animation: borderChange 2s infinite;
+    cursor: pointer;
 }
 
 @keyframes borderChange {
@@ -78,7 +79,7 @@ canvas {
 }
 
 .upgrade {
-    margin: 50px auto;
+    margin: auto;
     width: fit-content;
     background-color: aquamarine;
     padding: 0 10px 50px;
