@@ -27,6 +27,18 @@ h1 {
     animation: colorChange 2s infinite;
 }
 
+h2 {
+    font-family: 'Indie Flower';
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+p (
+    font-family: 'Indie Flower';
+    font-size: 15px;
+    color: #E3E4FA;
+}
+
 @keyframes colorChange {
     0% {color: red;}
     25% {color: yellow;}
