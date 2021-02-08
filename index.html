@@ -7,32 +7,62 @@
 
   <body>
     <script type="text/javascript" src="main.js"></script>
+    <div id="introduction" align="center" style="display: block">
+      <p>Welcome to Idle Titans!</p>
+      <button id="toInstruction" onclick="toInstruction()" style="display: none">Instruction</button>
+      <canvas id="loading" width="300px" height="20px"/>
+    </div>
 
-    <div class="row">
+    <div id="instruction" style="display: none">
+      <h2>Main Controls</h2>
+      <br>
+      <p>Click on the battle scene to attack the current monster.</p>
+      <br>
+      <h2>Upgrades</h2>
+      <ul>
+        <li> Damage - Increases base damage dealt by the adventurer by one point per upgrade. Defeat monsters faster with stronger attacks!</li>
+        <li> HP - Increases the adventurer's max hit points by ten points per upgrade. Be more vigorous in the fight against monsters!</li>
+        <li> DEF - Increases the adventurer's defense by one point per upgrade. Withstand monsters' attacks longer!</li>
+        <li> Critical Rate - Increases the adventurer's critical rate by 0.01% per upgrade. Raise the chances to deal a powerful attack no monster can survive against!</li>
+        <li> Critical Damage Increase - Increases the adventurer's critical damage by 0.01% per upgrade. Deal additional damage with a powerful attack!</li>
+      </ul>
+      <br>
+      <h2>Skills</h2>
+      <ul>
+        <li> Passive Skills' Damage - </li>
+        <li> Passive Skills' Cooldown - </li>
+        <li> Increase Gold Drop Multiplier - Increases the amount of gold dropped per monster. Earn more gold to obtain more upgrades!</li>
+      </ul>
+      <div align="center">
+        <button onclick="playGame()"><img src="images/FightButtonImage.png" height="100px"></button>
+      </div>
+    </div>
+
+    <div id="playground" style="display: none">
       <h1 align="center">IDLE TITAN</h1>
 
       <div class="canvas-battle">
         <canvas id="battle" width="600" height="300" style="" onclick="attackMonster()"/>
       </div>
       
-      <div class="upgrade" align="center">
-        <h2>--- Upgrade ---</h2>
-        <button onclick="increaseDamage()"><strong>(+1)</strong> Damage (<em id="damage"></em> gold)</button>
-        <button onclick="increaseHP()"><strong>(+10)</strong> HP (<em id="hp"></em> gold)</button>
-        <button onclick="increaseDefense()"><strong>(+1)</strong> DEF (<em id="defense"></em> gold)</button>
-        <button onclick="criticalRateIncrease()"><strong>(+.1%)</strong> Critical Rate (<em id="criticalRate"></em> gold)</button>
-        <button onclick="criticalDamageIncrease()"><strong>(+.1%)</strong> Critical Damage Increase (<em id="criticalDamage"></em> gold)</button>
+      <div class="upgrade" align="center" id="upgradeArea">
+        <h2 id="upgrade">--- Upgrade ---</h2>
+        <button onclick="increaseDamage()" id="damageBtn"><strong>(+1)</strong> Damage (<em id="damage"></em> gold)</button>
+        <button onclick="increaseHP()" id="hpBtn"><strong>(+10)</strong> HP (<em id="hp"></em> gold)</button>
+        <button onclick="increaseDefense()" id="defenseBtn"><strong>(+1)</strong> DEF (<em id="defense"></em> gold)</button>
+        <button onclick="criticalRateIncrease()" id="crBtn"><strong>(+.1%)</strong> Critical Rate (<em id="criticalRate"></em> gold)</button>
+        <button onclick="criticalDamageIncrease()" id="cdBtn"><strong>(+.1%)</strong> Critical Damage Increase (<em id="criticalDamage"></em> gold)</button>
         <br><br>
-        <h2>--- Skills ---</h2>
-        <button onclick="passiveSkillsDamage()"><strong>(+1)</strong> Passive Skills' Damage (<em id="passiveDamage"></em> gold)</button>
-        <button onclick="passiveSkillsCooldown()"><strong>(-0.1s)</strong> Passive Skills' Cooldown (<em id="passiveCooldown"></em> gold)</button>
-        <button onclick="increaseGoldDrop()"><strong>(+1)</strong> Increase Gold Drop Multiplier (<em id="goldDrop"></em> gold)</button>
+        <h2 id="skills">--- Skills ---</h2>
+        <button onclick="passiveSkillsDamage()" id="pdBtn"><strong>(+1)</strong> Passive Skills' Damage (<em id="passiveDamage"></em> gold)</button>
+        <button onclick="passiveSkillsCooldown()" id="pcBtn"><strong>(-0.1s)</strong> Passive Skills' Cooldown (<em id="passiveCooldown"></em> gold)</button>
+        <button onclick="increaseGoldDrop()" id="goldBtn"><strong>(+1)</strong> Increase Gold Drop Multiplier (<em id="goldDrop"></em> gold)</button>
       </div>
 
     </div>
 
   </body>
-  <footer style="background-color: aliceblue">
-    <p align="right" style="margin: 50px 0 0; padding: 5px">Attributed by <a href="mailto:marvin.calvin.1705@gmail.com">MC Nguyen</a> and Kyle Tam for College's Purposes (<a href="#">Credit</a>)</p>
+  <footer style="background-color: aliceblue; position: fixed; bottom: 0; left: 0; width: 100%; height: fit-content">
+    <p align="right" style="margin: 0;">Attributed by <a href="mailto:marvin.calvin.1705@gmail.com">MC Nguyen</a> and Kyle Tam for College's Purposes (<a href="#">Credit</a>)</p>
   </footer>
 </html>

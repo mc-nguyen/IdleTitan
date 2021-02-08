@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 :root {
+    --font: 'Indie Flower';
     --backgroundColor: rgb(246, 241, 209);
     --colorShadeA: rgb(106, 163, 137);
     --colorShadeB: rgb(121, 186, 156);
@@ -19,7 +20,7 @@ body {
 }
 
 h1 {
-    font-family: 'Indie Flower', cursive;
+    font-family: var(--font), cursive;
     font-size: 75px;
     font-weight: bolder;
     padding: 0;
@@ -28,15 +29,16 @@ h1 {
 }
 
 h2 {
-    font-family: 'Indie Flower';
+    font-family: var(--font), cursive;
     font-size: 30px;
     font-weight: bolder;
 }
 
-p (
-    font-family: 'Indie Flower';
-    font-size: 15px;
-    color: #E3E4FA;
+p {
+    font-family: var(--font), cursive;
+    font-size: 25px;
+    color: blue;
+    font-weight: bolder;
 }
 
 @keyframes colorChange {
@@ -158,4 +160,36 @@ canvas {
 
     box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.25em 0 0 var(--colorShadeB);
 
+}
+
+#instruction {
+    background-color: white;
+    padding: 50px;
+    max-width: 600px;
+    margin: auto;
+}
+
+#instruction button {
+    cursor: pointer;
+    width: fit-content;
+    background-color: darkolivegreen;
+    border-radius: 50%;
+    box-shadow: 0 9px #999;
+}
+
+#instruction button:active {
+    text-decoration: none;
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+#introduction {
+    background-color: white;
+    padding: 50px;
+    width: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

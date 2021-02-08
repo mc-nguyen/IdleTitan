@@ -223,6 +223,61 @@ function updateText() {
     document.getElementById("goldDrop").innerHTML = upgradeCost["goldDrop"];
 }
 
+window.setInterval(function() {
+    let upgrades = 5;
+    let skills = 3;
+    if (player["gold"] < upgradeCost["damage"]) {
+        document.getElementById("damageBtn").style.display = "none";
+        upgrades--;
+    } else document.getElementById("damageBtn").style.display = "block";
+
+    if (player["gold"] < upgradeCost["HP"]) {
+        document.getElementById("hpBtn").style.display = "none";
+        upgrades--;
+    } else document.getElementById("hpBtn").style.display = "block";
+
+    if (player["gold"] < upgradeCost["defense"]) {
+        document.getElementById("defenseBtn").style.display = "none";
+        upgrades--;
+    } else document.getElementById("defenseBtn").style.display = "block";
+
+    if (player["gold"] < upgradeCost["criticalRate"]) {
+        document.getElementById("crBtn").style.display = "none";
+        upgrades--;
+    } else document.getElementById("crBtn").style.display = "block";
+
+    if (player["gold"] < upgradeCost["criticalDamage"]) {
+        document.getElementById("cdBtn").style.display = "none";
+        upgrades--;
+    } else document.getElementById("cdBtn").style.display = "block";
+
+    if (upgrades === 0) document.getElementById("upgrade").style.display = "none";
+    else document.getElementById("upgrade").style.display = "block";
+
+    if (player["gold"] < upgradeCost["passiveDamage"]) {
+        document.getElementById("pdBtn").style.display = "none";
+        skills--;
+    } else document.getElementById("pdBtn").style.display = "block";
+
+    if (player["gold"] < upgradeCost["passiveCooldown"]) {
+        document.getElementById("pcBtn").style.display = "none";
+        skills--;
+    } else document.getElementById("pcBtn").style.display = "block";
+
+    if (player["gold"] < upgradeCost["goldDrop"]) {
+        document.getElementById("goldBtn").style.display = "none";
+        skills--;
+    } else document.getElementById("goldBtn").style.display = "block";
+
+    if (skills === 0) document.getElementById("skills").style.display = "none";
+    else document.getElementById("skills").style.display = "block";
+
+    if (upgrades === 0 && skills === 0) document.getElementById("upgradeArea").style.display = "none";
+    else document.getElementById("upgradeArea").style.display = "block";
+
+    updateText();
+}, 1)
+
 //monster update
 function monsterUpgrade() {
     monster['defaultHP'] = Math.ceil(monster['defaultHP'] * 1.2)
@@ -278,3 +333,31 @@ window.setInterval(function monsterAttack() {
     }
     updateText();
 }, monster["speed"] * (1 + Math.random()) * 1000);
+
+function playGame() {
+    document.getElementById("instruction").style.display = "none";
+    document.getElementById("playground").style.display = "block";
+}
+
+let percent = 0;
+function count() {
+    if (percent <= 100) percent += 0.1;
+    else {
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("toInstruction").style.display = "block";
+    }
+}
+
+window.setInterval(function loading() {
+    let canvas = document.getElementById("loading");
+    let context = canvas.getContext("2d");
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillRect(0,0, canvas.width * percent/100, canvas.height);
+    count();
+    count();
+}, 30);
+
+function toInstruction() {
+    document.getElementById("introduction").style.display = "none";
+    document.getElementById("instruction").style.display = "block";
+}
