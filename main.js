@@ -280,7 +280,7 @@ window.setInterval(function() {
 
 //monster update
 function monsterUpgrade() {
-    monster['defaultHP'] = Math.ceil(monster['defaultHP'] * 1.2)
+    monster['defaultHP'] = Math.ceil(monster['defaultHP'] * 1.2);
     monster['HP'] = monster['defaultHP'];
     monster["damage"]++;
 
