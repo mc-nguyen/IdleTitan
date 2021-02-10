@@ -10,7 +10,7 @@
     <div id="introduction" align="center" style="display: block">
       <p>Welcome to Idle Titans!</p>
       <button id="toInstruction" onclick="toInstruction()" style="display: none">Instruction</button>
-      <canvas id="loading" width="300px" height="20px"/>
+      <canvas id="loading" width="300px" height="20px"></canvas>
     </div>
 
     <div id="instruction" style="display: none">
@@ -34,7 +34,7 @@
         <li> Increase Gold Drop Multiplier - Increases the amount of gold dropped per monster. Earn more gold to obtain more upgrades!</li>
       </ul>
       <div align="center">
-        <button onclick="playGame()"><img src="images/FightButtonImage.png" height="100px"></button>
+        <button onclick="playGame()"><img src="images/FightButtonImage.png" alt="" height="100px"></button>
       </div>
     </div>
 
@@ -42,7 +42,7 @@
       <h1 align="center">IDLE TITAN</h1>
 
       <div class="canvas-battle">
-        <canvas id="battle" width="600" height="300" style="" onclick="attackMonster()"/>
+        <canvas id="battle" width="600" height="300" style="" onclick="attackMonster()"></canvas>
       </div>
       
       <div class="upgrade" align="center" id="upgradeArea">
@@ -60,6 +60,7 @@
       </div>
 
     </div>
+    <canvas id="boss" width="600px" height="400px" onclick="" style="display: none"></canvas>
 
   </body>
   <footer style="background-color: aliceblue; position: fixed; bottom: 0; left: 0; width: 100%; height: fit-content">

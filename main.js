@@ -361,3 +361,20 @@ function toInstruction() {
     document.getElementById("introduction").style.display = "none";
     document.getElementById("instruction").style.display = "block";
 }
+
+let counting = ['1', '2', '3', 'READY?', 'GO!'];
+let start = 0;
+
+window.setInterval(function warning() {
+    let canvas = document.getElementById("boss");
+    let context = canvas.getContext("2d");
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    if (start < 5) {
+        context.font = "100px Comic Sans MS";
+        context.fillStyle = "red";
+        context.textAlign = "center";
+        context.fillText("WARNING", canvas.width / 2, canvas.height / 2 - 60);
+        context.fillText(counting[start], canvas.width / 2, canvas.height / 2 + 60);
+        start++;
+    }
+}, 1000)
