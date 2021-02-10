@@ -82,7 +82,7 @@ function increaseDamage() {
     {
         player["gold"] -= upgradeCost["damage"];
         player["damage"]++;
-        upgradeCost["damage"] = Math.ceil(upgradeCost["damage"] * 1.5);
+        upgradeCost["damage"] = Math.ceil(upgradeCost["damage"] * 1.25);
         updateText();
     }
 }
@@ -92,7 +92,7 @@ function increaseHP() {
         player["gold"] -= upgradeCost["HP"];
         player["defaultHP"] += 10;
         player["HP"] = player["defaultHP"];
-        upgradeCost["HP"] = Math.ceil(upgradeCost["HP"] * 1.5);
+        upgradeCost["HP"] = Math.ceil(upgradeCost["HP"] * 1.25);
     }
     updateText();
 }
@@ -101,7 +101,7 @@ function increaseDefense() {
     {
         player["gold"] -= upgradeCost["defense"];
         player["defense"]++;
-        upgradeCost["defense"] = Math.ceil(upgradeCost["defense"] * 1.5);
+        upgradeCost["defense"] = Math.ceil(upgradeCost["defense"] * 1.25);
     }
     updateText();
 }
