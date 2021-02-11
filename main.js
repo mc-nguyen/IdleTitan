@@ -82,7 +82,7 @@ function increaseDamage() {
     {
         player["gold"] -= upgradeCost["damage"];
         player["damage"]++;
-        upgradeCost["damage"] = Math.ceil(upgradeCost["damage"] * 1.5);
+        upgradeCost["damage"] = Math.ceil(upgradeCost["damage"] * 1.25);
         updateText();
     }
 }
@@ -92,7 +92,7 @@ function increaseHP() {
         player["gold"] -= upgradeCost["HP"];
         player["defaultHP"] += 10;
         player["HP"] = player["defaultHP"];
-        upgradeCost["HP"] = Math.ceil(upgradeCost["HP"] * 1.5);
+        upgradeCost["HP"] = Math.ceil(upgradeCost["HP"] * 1.25);
     }
     updateText();
 }
@@ -101,7 +101,7 @@ function increaseDefense() {
     {
         player["gold"] -= upgradeCost["defense"];
         player["defense"]++;
-        upgradeCost["defense"] = Math.ceil(upgradeCost["defense"] * 1.5);
+        upgradeCost["defense"] = Math.ceil(upgradeCost["defense"] * 1.25);
     }
     updateText();
 }
@@ -280,7 +280,7 @@ window.setInterval(function() {
 
 //monster update
 function monsterUpgrade() {
-    monster['defaultHP'] = Math.ceil(monster['defaultHP'] * 1.2)
+    monster['defaultHP'] = Math.ceil(monster['defaultHP'] * 1.2);
     monster['HP'] = monster['defaultHP'];
     monster["damage"]++;
 
@@ -361,20 +361,3 @@ function toInstruction() {
     document.getElementById("introduction").style.display = "none";
     document.getElementById("instruction").style.display = "block";
 }
-
-let counting = ['1', '2', '3', 'READY?', 'GO!'];
-let start = 0;
-
-window.setInterval(function warning() {
-    let canvas = document.getElementById("boss");
-    let context = canvas.getContext("2d");
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    if (start < 5) {
-        context.font = "100px Comic Sans MS";
-        context.fillStyle = "red";
-        context.textAlign = "center";
-        context.fillText("WARNING", canvas.width / 2, canvas.height / 2 - 60);
-        context.fillText(counting[start], canvas.width / 2, canvas.height / 2 + 60);
-        start++;
-    }
-}, 1000)
