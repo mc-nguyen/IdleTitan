@@ -11,7 +11,7 @@
 }
 
 body {
-    background-image: url('images/grass-background.jpeg');
+    background-image: url('../images/grass-background.jpeg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -92,6 +92,10 @@ canvas {
     60% {border-color: var(--colorShadeD);}
     80% {border-color: var(--colorShadeE);}
     100% {border-color: var(--colorShadeA);}
+}
+
+#playground {
+    display: block;
 }
 
 .upgrade {

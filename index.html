@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" type="text/css" href="interface.css" />
+    <link rel="stylesheet" type="text/css" href="css/interface.css" />
+    <link rel="stylesheet" type="text/css" href="css/boss.css" />
     <title>Idle Titan</title>
   </head>
 
   <body>
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/miscellaneous.js"></script>
+
     <div id="introduction" align="center" style="display: block">
       <p>Welcome to Idle Titans!</p>
       <button id="toInstruction" onclick="toInstruction()" style="display: none">Instruction</button>
@@ -44,6 +47,13 @@
       <div class="canvas-battle">
         <canvas id="battle" width="600" height="300" style="" onclick="attackMonster()"></canvas>
       </div>
+
+      <div align="center" style="">
+        <a class="notification" onclick="toBoss()">
+          <img src="images/boss-message.png" height="100px">
+          <span class="badge" id="numOfBosses">3</span>
+        </a>
+      </div>
       
       <div class="upgrade" align="center" id="upgradeArea">
         <h2 id="upgrade">--- Upgrade ---</h2>
@@ -60,7 +70,7 @@
       </div>
 
     </div>
-    <canvas id="boss" width="600px" height="400px" onclick="" style="display: none"></canvas>
+    <canvas id="boss-field" width="800px" height="600px" style="display: none"></canvas>
 
   </body>
   <footer style="background-color: aliceblue; position: fixed; bottom: 0; left: 0; width: 100%; height: fit-content">

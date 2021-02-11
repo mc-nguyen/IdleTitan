@@ -31,14 +31,14 @@ const player = {
     },
 };
 const upgradeCost = {
-    'damage': 50,
-    'HP': 50,
-    'defense': 50,
-    'criticalRate': 50,
-    'criticalDamage': 50,
-    'passiveDamage': 50,
-    'passiveCooldown': 50,
-    'goldDrop': 100,
+    'damage': 20,
+    'HP': 20,
+    'defense': 20,
+    'criticalRate': 20,
+    'criticalDamage': 20,
+    'passiveDamage': 20,
+    'passiveCooldown': 20,
+    'goldDrop': 50,
 }
 
 const image = new Image();
@@ -60,11 +60,7 @@ function attackMonster()
 {
      if(monster['HP'] > 0)
      {
-         let criticalRate = Math.random();
-         if (criticalRate > player["critical"]["rate"]) criticalRate = 0;
-         let criticalDamage = Math.random();
-         if (criticalDamage > player["critical"]["damage"]) criticalDamage = 0;
-         let damage = player['damage'] * (1 + criticalDamage) * (1 + criticalRate);
+         let damage = player['damage'] * (1 + player["critical"]["rate"]) * (1 + player["critical"]["damage"]);
          monster['HP'] -= damage;
          if (monster['HP'] <= 0) {
               player['gold'] += monster['level'] * monster['goldDrop'];
@@ -107,22 +103,20 @@ function increaseDefense() {
 }
 
 function criticalRateIncrease() {
-    if (player["critical"]["rate"] < 1)
-        if(player["gold"] >= upgradeCost["criticalRate"]) {
-            player["gold"] -= upgradeCost["criticalRate"];
-            player["criticalRate"]+=.01;
-            upgradeCost["criticalRate"] = Math.ceil(upgradeCost["criticalRate"] * 1.5);
-        }
+    if(player["gold"] >= upgradeCost["criticalRate"]) {
+        player["gold"] -= upgradeCost["criticalRate"];
+        player["criticalRate"]+=.1;
+        upgradeCost["criticalRate"] = Math.ceil(upgradeCost["criticalRate"] * 1.5);
+    }
     updateText();
 }
 
 function criticalDamageIncrease() {
-    if (player["critical"]["damage"] < 1)
-        if(player["gold"] >= upgradeCost["criticalDamage"]) {
-            player["gold"] -= upgradeCost["criticalDamage"];
-            player["criticalDamage"]+=.01;
-            upgradeCost["criticalDamage"] = Math.ceil(upgradeCost["criticalDamage"] * 1.5);
-        }
+    if(player["gold"] >= upgradeCost["criticalDamage"]) {
+        player["gold"] -= upgradeCost["criticalDamage"];
+        player["criticalDamage"]+=.1;
+        upgradeCost["criticalDamage"] = Math.ceil(upgradeCost["criticalDamage"] * 1.5);
+    }
     updateText();
 }
 
@@ -139,7 +133,7 @@ function passiveSkillsCooldown() {
     if (player["passive"]["cooldown"] > 0.1)
         if(player["gold"] >= upgradeCost["passiveCooldown"]) {
             player["gold"] -= upgradeCost["passiveCooldown"];
-            player["passiveCooldown"]-= .01;
+            player["passiveCooldown"] -= .1;
             upgradeCost["passiveCooldown"] = Math.ceil(upgradeCost["passiveCooldown"] * 1.5);
         }
     updateText();
@@ -282,7 +276,7 @@ window.setInterval(function() {
 function monsterUpgrade() {
     monster['defaultHP'] = Math.ceil(monster['defaultHP'] * 1.2);
     monster['HP'] = monster['defaultHP'];
-    monster["damage"]++;
+    monster["damage"] = Math.floor(monster["level"] / 5);
 
     monster["level"]++;
     monster["monster-pic"]["col"]++;
@@ -332,32 +326,4 @@ window.setInterval(function monsterAttack() {
         }
     }
     updateText();
-}, monster["speed"] * (1 + Math.random()) * 1000);
-
-function playGame() {
-    document.getElementById("instruction").style.display = "none";
-    document.getElementById("playground").style.display = "block";
-}
-
-let percent = 0;
-function count() {
-    if (percent <= 100) percent += 0.1;
-    else {
-        document.getElementById("loading").style.display = "none";
-        document.getElementById("toInstruction").style.display = "block";
-    }
-}
-
-window.setInterval(function loading() {
-    let canvas = document.getElementById("loading");
-    let context = canvas.getContext("2d");
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.fillRect(0,0, canvas.width * percent/100, canvas.height);
-    count();
-    count();
-}, 30);
-
-function toInstruction() {
-    document.getElementById("introduction").style.display = "none";
-    document.getElementById("instruction").style.display = "block";
-}
+}, monster["speed"] * 1000);

@@ -14,7 +14,7 @@ const bossMonster = {
 
 function attackBossMonster()
 {
-     if((monster['level'] % 10) == 0)
+     if ((monster['level'] % 10) == 0)
      {
           if(bossMonster['HP'] > 0)
           {

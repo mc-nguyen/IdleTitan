@@ -1,0 +1,29 @@
+.notification {
+    margin-bottom: 50px;
+    background-color: #555;
+    color: white;
+    text-decoration: none;
+    padding: 6px 0 0;
+    position: relative;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.notification:hover {
+    background: red;
+}
+
+.notification .badge {
+    font-size: 20px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 5px 11px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+}
+
+#boss-field {
+    margin-top: auto;
+}
