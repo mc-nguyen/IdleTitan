@@ -14,9 +14,9 @@ const bossMonster = {
 
 function attackBossMonster()
 {
-     if ((monster['level'] % 10) == 0)
+     if (monster['level'] % 10) == 0)
      {
-          if(bossMonster['HP'] > 0)
+          if (bossMonster['HP'] > 0)
           {
               let criticalRate = Math.random();
               if (criticalRate > player["critical"]["rate"]) criticalRate = 0;
@@ -36,20 +36,20 @@ function attackBossMonster()
 }
 
 //Boss Monster update
-function monsterUpgrade() {
+function bossMonsterUpgrade() {
     bossMonster['defaultHP'] *= 2;
     bossMonster['HP'] = bossMonster['defaultHP'];
     bossMonster['damage'] = Math.ceil(bossMonster['damage'] * 1.75);
 
     bossMonster["level"]++;
-    /*monster["monster-pic"]["col"]++;
+    /*bossMonster["monster-pic"]["col"]++;
 
-    if (monster["monster-pic"]["col"] === 4) {
-        monster["monster-pic"]["col"] = 0;
-        monster["monster-pic"]["row"]++;
+    if (bossMonster["monster-pic"]["col"] === 4) {
+        bossMonster["monster-pic"]["col"] = 0;
+        bossMonster["monster-pic"]["row"]++;
     }
-    if (monster["monster-pic"]["row"] === 3) {
-        monster["monster-pic"]["row"] = 0;
+    if (bossMonster["monster-pic"]["row"] === 3) {
+        bossMonster["monster-pic"]["row"] = 0;
     }*/
 }
 
