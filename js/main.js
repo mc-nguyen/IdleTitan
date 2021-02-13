@@ -120,7 +120,7 @@ function criticalDamageIncrease() {
     updateText();
 }
 
-function passiveSkillsDamage() {
+function passiveSkillDamage() {
     if(player["gold"] >= upgradeCost["passiveDamage"]) {
         player["gold"] -= upgradeCost["passiveDamage"];
         player["passive"]["damage"]++;
@@ -129,7 +129,7 @@ function passiveSkillsDamage() {
     updateText();
 }
 
-function passiveSkillsCooldown() {
+function passiveSkillCooldown() {
     if (player["passive"]["cooldown"] > 0.1)
         if(player["gold"] >= upgradeCost["passiveCooldown"]) {
             player["gold"] -= upgradeCost["passiveCooldown"];
