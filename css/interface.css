@@ -188,6 +188,13 @@ canvas {
     transform: translateY(4px);
 }
 
+#credits {
+    background-color: white;
+    padding: 50px;
+    max-width: 600px;
+    margin: auto;
+}
+
 #introduction {
     background-color: white;
     padding: 50px;
