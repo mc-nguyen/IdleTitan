@@ -170,7 +170,7 @@ canvas {
     background-color: white;
     padding: 50px;
     max-width: 600px;
-    margin: auto;
+    margin: 10px auto;
 }
 
 #instruction button {

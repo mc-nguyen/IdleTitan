@@ -186,8 +186,8 @@ function updateText() {
 
     //Boss monster
     context.drawImage(image,
-        bossMonster["bossMonster-pic"]["col"] * col,
-        bossMonster["bossMonster-pic"]["row"] * row,
+        monster["monster-pic"]["col"] * col,
+        monster["monster-pic"]["row"] * row,
         col,
         row,
         canvas.width * 3/4 - col / 2,
@@ -198,14 +198,14 @@ function updateText() {
     context.font = "30px Comic Sans MS";
     context.fillStyle = "red";
     context.textAlign = "right";
-    context.fillText("Level " + bossMonster["level"], canvas.width - 10, 35);
+    context.fillText("Level " + monster["level"], canvas.width - 10, 35);
     
     //Boss monster HP
     context.font = "bolder 12px Comic Sans MS";
     context.fillStyle = "pink";
     context.textAlign = "left";
     context.fillText("HP", canvas.width/2 + 10, canvas.height - 10);
-    let lostHP = (canvas.width/2 - 40) * (1 - bossMonster["HP"] / bossMonster["defaultHP"]);
+    lostHP = (canvas.width/2 - 40) * (1 - monster["HP"] / monster["defaultHP"]);
     context.fillRect(canvas.width/2 + 30 + lostHP,canvas.height - 25,canvas.width/2 - 40 - lostHP,20);
     context.strokeRect(canvas.width/2 + 30,canvas.height - 25,canvas.width/2 - 40,20);
     
@@ -337,7 +337,7 @@ window.setInterval(function monsterAttack() {
             monster['level']--;
             monster['defaultHP'] = Math.ceil(monster['defaultHP'] / 1.2);
             monster['HP'] = monster['defaultHP'];
-            monster["damage"]--;
+            monster["damage"] = Math.floor(monster["level"] / 5);
             player['HP'] = player['defaultHP'];
 
             monster["monster-pic"]["col"]--;
