@@ -49,9 +49,9 @@
         <canvas id="battle" width="600" height="300" style="" onclick="attackMonster()"></canvas>
       </div>
 
-      <div align="center" style="">
+      <div id="notification" align="center" style="display: none">
         <a class="notification" onclick="toBoss()">
-          <img src="images/boss-message.png" height="100px">
+          <img src="images/boss-message.png" height="100px" alt="">
           <span class="badge" id="numOfBosses">3</span>
         </a>
       </div>
@@ -71,7 +71,12 @@
       </div>
 
     </div>
-    <canvas id="boss-field" width="800px" height="600px" style="display: none"/>
+    <div id="boss_field_div" style="display: none" align="center">
+      <div class="canvas-battle">
+        <canvas id="boss-field" width="600px" height="400px" onclick="attackBossMonster()"></canvas>
+      </div>
+      <button onclick="runAway()"><img src="images/RunAwayButtonImage.png" alt="" height="100px"></button>
+    </div>
 
   </body>
   <footer style="background-color: aliceblue; position: fixed; bottom: 0; left: 0; width: 100%; height: fit-content">

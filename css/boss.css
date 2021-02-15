@@ -16,10 +16,32 @@
 .notification .badge {
     font-size: 20px;
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 0;
+    right: 0;
     padding: 5px 11px;
     border-radius: 50%;
     background: red;
     color: white;
+}
+
+#boss_field_div button {
+    cursor: pointer;
+    width: fit-content;
+    background-color: darkolivegreen;
+    border-radius: 50%;
+    box-shadow: 0 9px #999;
+}
+
+#boss_field_div button:active {
+    text-decoration: none;
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+#boss_field_div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

@@ -40,6 +40,8 @@ const upgradeCost = {
     'passiveCooldown': 20,
     'goldDrop': 50,
 }
+let bossesAvailable = 0;
+let bossesKilled = 0;
 
 const image = new Image();
 image.src = 'images/img.png';
@@ -304,8 +306,12 @@ function monsterUpgrade() {
     monster["damage"] = Math.floor(monster["level"] / 5);
 
     monster["level"]++;
-    monster["monster-pic"]["col"]++;
+    if (monster["level"] % 5 === 1 && monster['level'] / 5 > bossesKilled + bossesAvailable)
+        bossesAvailable++;
+    document.getElementById('notification').style.display = (bossesAvailable > 0) ? "block" : "none";
+    document.getElementById('numOfBosses').innerHTML = bossesAvailable.toString();
 
+    monster["monster-pic"]["col"]++;
     if (monster["monster-pic"]["col"] === 4) {
         monster["monster-pic"]["col"] = 0;
         monster["monster-pic"]["row"]++;
